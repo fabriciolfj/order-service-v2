@@ -6,6 +6,11 @@ server:
     idle-timeout: 15s
 
 spring:
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: 5672
+    useraname: user
+    password: password
   cloud:
     function:
       definition: dispatchOrder
