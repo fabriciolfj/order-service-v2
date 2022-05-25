@@ -6,6 +6,12 @@ server:
     idle-timeout: 15s
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          #issuer-uri: http://localhost:8080/auth/realms/PolarBookshop
+          jwk-set-uri: http://localhost:8080/auth/realms/PolarBookshop/protocol/openid-connect/certs
   rabbitmq:
     host: localhost
     port: 5672
@@ -44,4 +50,4 @@ spring:
     timeout-per-shutdown-phase: 15s
 
 polar:
-  catalog-service-uri: "http://localhost:9001"
+  catalog-service-uri: ${POLAR_CATALOG_SERVICE_URI:http://localhost:9001}

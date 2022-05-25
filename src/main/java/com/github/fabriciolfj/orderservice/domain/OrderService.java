@@ -13,7 +13,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import org.springframework.cloud.stream.function.StreamBridge;
 
-
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -24,8 +23,8 @@ public class OrderService {
     private final BookClient bookClient;
     private final StreamBridge streamBridge;
 
-    public Flux<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public Flux<Order> getAllOrders(final String userId) {
+        return orderRepository.findAllByCreatedBy(userId);
     }
 
     @Transactional
@@ -73,6 +72,8 @@ public class OrderService {
                 OrderStatus.DISPATCHED,
                 existingOrder.createdDate(),
                 existingOrder.lastModifiedDate(),
+                existingOrder.createdBy(),
+                existingOrder.lastModifiedBy(),
                 existingOrder.version()
         );
     }
