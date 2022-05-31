@@ -51,3 +51,15 @@ spring:
 
 polar:
   catalog-service-uri: ${POLAR_CATALOG_SERVICE_URI:http://localhost:9001}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+      probes:
+        enabled: true
