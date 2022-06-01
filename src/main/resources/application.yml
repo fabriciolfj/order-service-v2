@@ -56,10 +56,17 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, metrics, prometheus
   endpoint:
     health:
       show-components: always
       show-details: always
       probes:
         enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
