@@ -5,6 +5,7 @@ server:
     connection-timeout: 2s
     idle-timeout: 15s
 
+
 spring:
   security:
     oauth2:
